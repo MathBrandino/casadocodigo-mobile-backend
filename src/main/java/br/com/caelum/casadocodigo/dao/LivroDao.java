@@ -20,7 +20,7 @@ public class LivroDao {
 	}
 	
 	public List<Livro> listarLivros() {
-		String sql = "SELECT l.*, a.* FROM livro_autor la "
+		String sql = "SELECT l.*, a.* FROM livroAutor la "
 				+ "JOIN autor a ON a.id = la.idAutor "
 				+ "JOIN livro l ON l.id = la.idLivro;";
 		ArrayList<Livro> livros = new ArrayList<Livro>();
