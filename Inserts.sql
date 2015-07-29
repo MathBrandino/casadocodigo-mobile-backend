@@ -17,4 +17,4 @@ values ('Felipe Torres',
 		'http://cdn.shopify.com/s/files/1/0155/7645/files/felipe-torres_medium.png');
 
 		
-insert into livroautor values('1','1');
+insert into livroAutor values('1','1');

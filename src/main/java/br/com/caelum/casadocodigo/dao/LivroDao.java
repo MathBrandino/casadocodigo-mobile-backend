@@ -21,7 +21,7 @@ public class LivroDao {
 	
 	public List<Livro> listarLivros() {
 		String sql = "SELECT l.*, a.* FROM livroAutor la "
-				+ "JOIN autor a ON a.id = la.idAutor "
+				+ "JOIN autor a ON a.idAutor = la.idAutor "
 				+ "JOIN livro l ON l.id = la.idLivro;";
 		ArrayList<Livro> livros = new ArrayList<Livro>();
 		Livro l = null;
@@ -52,16 +52,17 @@ public class LivroDao {
 				}
 				
 				Autor a = new Autor();
-				a.setId(rs.getInt("idAutor"));
+				a.setIdAutor(rs.getInt("idAutor"));
 				a.setNomeAutor(rs.getString("nomeAutor"));
 				a.setDetalhesAutor(rs.getString("detalhesAutor"));
 				a.setImagemAutor(rs.getString("imagemAutor"));
 				
 				l.addAutor(a);
 			}
+			
+			return livros;
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
-		return null;
 	}
 }
