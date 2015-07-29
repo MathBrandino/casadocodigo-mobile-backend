@@ -85,4 +85,7 @@ public class Livro {
 	public void setAutores(List<Autor> autores) {
 		this.autores = autores;
 	}
+	public void addAutor(Autor autor) {
+		this.autores.add(autor);
+	}
 }
