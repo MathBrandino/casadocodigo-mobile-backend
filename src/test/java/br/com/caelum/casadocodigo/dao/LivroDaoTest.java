@@ -51,7 +51,7 @@ public class LivroDaoTest {
 			Connection connection = new ConnectionFactory().getConnection();
 			List<Livro> listaDeLivros = new LivroDao(connection).listarLivros();
 			
-			Assert.assertEquals(livro.getDataPublicacao(), listaDeLivros.get(0).getDataPublicacao());
+			Assert.assertEquals(livro, listaDeLivros.get(0));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
