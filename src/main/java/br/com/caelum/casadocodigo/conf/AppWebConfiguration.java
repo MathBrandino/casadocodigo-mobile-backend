@@ -6,9 +6,12 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import br.com.caelum.casadocodigo.controllers.LivroControllerHibernate;
+import br.com.caelum.casadocodigo.dao.LivroDaoJPA;
+
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "br.com.caelum.casadocodigo")
+@ComponentScan(basePackages = "br.com.caelum.casadocodigo", basePackageClasses={LivroControllerHibernate.class, LivroDaoJPA.class})
 public class AppWebConfiguration extends WebMvcConfigurerAdapter
 {
 
