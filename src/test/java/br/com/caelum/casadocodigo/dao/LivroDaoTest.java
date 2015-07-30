@@ -53,6 +53,12 @@ public class LivroDaoTest {
 						.setDetalhesAutor("Felipe Torres é Bacharel em Ciência da Computação pelo IME-USP e atua como instrutor e desenvolvedor Android há mais de 5 anos na Caelum. Apaixonado por programação de jogos, criou sua versão de Carmen Sandiego, que teve mais de 100.000 downloads no Google Play Store. Além disso, participa ativamente de diversas comunidades como o GUJ, onde foca no ensino e solução de dúvidas e o Android Open Source Project, com contribuições no código-fonte do sistema Android.")
 						.setImagemAutor("http://cdn.shopify.com/s/files/1/0155/7645/files/felipe-torres_medium.png")
 						.constroiAutor())
+				.addAutor( new AutorBuiler().novoAutor()
+						.setIdAutor(2)
+						.setNomeAutor("Alberto Souza")
+						.setDetalhesAutor("Alberto Souza é Bacharel em Ciência da Computação pela Universidade Salvador e desenvolvedor desde 2005, tendo participado de muitos projetos web e experimentado diversas linguagens. Participa de projetos open source como o Stella e VRaptor. Possui a certificação SCJP e trabalha como desenvolvedor e instrutor pela Caelum. Seu Twitter é @alberto_souza e você também pode encontrá-lo no Github, no endereço http://www.github.com/asouza")
+						.setImagemAutor("http://cdn.shopify.com/s/files/1/0155/7645/files/alberto-souza_medium.png")
+						.constroiAutor())		
 				.constroiLivro());
 		return acervo;
 	}

@@ -1,4 +1,3 @@
-use casaDoCodigo;
 
 -- LIVRO 1
 insert into livro (nomeLivro, descricaoLivro, dataPublicacao, numeroPaginas, valorFisico, valorVirtual, valorVirtualComFisico, isbn, imagemUrl) 
@@ -41,5 +40,6 @@ values ('Alberto Souza',
 
 		
 insert into livroAutor values('2','2');
+insert into livroAutor values('2','1');
 
 

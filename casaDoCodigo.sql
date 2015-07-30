@@ -1,5 +1,4 @@
 create database if not exists casaDoCodigo;
-use casaDoCodigo;
 
 set names 'utf8';
 
