@@ -46,7 +46,7 @@ public class LivroDao {
 					l.setValorFisico(rs.getBigDecimal("valorFisico"));
 					l.setValorVirtual(rs.getBigDecimal("valorVirtual"));
 					l.setValorVirtualComFisico(rs.getBigDecimal("valorVirtualComFisico"));
-					l.setISBN(rs.getString("isbn"));
+					l.setIsbn(rs.getString("isbn"));
 					l.setImagemUrl(rs.getString("imagemUrl"));
 					livros.add(l);
 				}

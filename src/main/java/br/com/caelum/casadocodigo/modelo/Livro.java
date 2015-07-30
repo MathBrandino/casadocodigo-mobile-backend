@@ -15,7 +15,7 @@ public class Livro {
     private BigDecimal valorFisico;
     private BigDecimal valorVirtual; 
     private BigDecimal valorVirtualComFisico;
-    private String ISBN;
+    private String isbn;
     private String imagemUrl;
     private List<Autor> autores = new ArrayList<Autor>();	
     
@@ -67,11 +67,11 @@ public class Livro {
 	public void setValorVirtualComFisico(BigDecimal valorVirtualComFisico) {
 		this.valorVirtualComFisico = valorVirtualComFisico;
 	}
-	public String getISBN() {
-		return ISBN;
+	public String getIsbn() {
+		return isbn;
 	}
-	public void setISBN(String iSBN) {
-		ISBN = iSBN;
+	public void setIsbn(String iSBN) {
+		isbn = iSBN;
 	}
 	public String getImagemUrl() {
 		return imagemUrl;
@@ -92,7 +92,7 @@ public class Livro {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((ISBN == null) ? 0 : ISBN.hashCode());
+		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
 		result = prime * result + ((autores == null) ? 0 : autores.hashCode());
 		result = prime * result
 				+ ((dataPublicacao == null) ? 0 : dataPublicacao.hashCode());
@@ -123,10 +123,10 @@ public class Livro {
 		if (getClass() != obj.getClass())
 			return false;
 		Livro other = (Livro) obj;
-		if (ISBN == null) {
-			if (other.ISBN != null)
+		if (isbn == null) {
+			if (other.isbn != null)
 				return false;
-		} else if (!ISBN.equals(other.ISBN))
+		} else if (!isbn.equals(other.isbn))
 			return false;
 		if (autores == null) {
 			if (other.autores != null)
