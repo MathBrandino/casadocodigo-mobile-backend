@@ -1,9 +1,13 @@
 create database if not exists casaDoCodigo;
 use casaDoCodigo;
 
+set names 'utf8';
+
 drop table if exists livroAutor;
 drop table if exists livro;
 drop table if exists autor;
+
+
 
 create table if not exists autor(
 	idAutor int not null primary key AUTO_INCREMENT,
