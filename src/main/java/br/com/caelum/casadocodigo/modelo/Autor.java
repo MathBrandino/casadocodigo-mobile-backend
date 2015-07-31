@@ -3,8 +3,10 @@ package br.com.caelum.casadocodigo.modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="autor")
 public class Autor {
 
 	@Id

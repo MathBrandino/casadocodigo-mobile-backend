@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name="livro")
 public class Livro {
 
 	@Id
@@ -35,10 +37,10 @@ public class Livro {
 	private BigDecimal valorVirtualComFisico;
 	private String isbn;
 	private String imagemUrl;
-	@ManyToMany
+	@ManyToMany 
 	@JoinTable(name="livroAutor", 
-	joinColumns = @JoinColumn(name="id"), 
-	inverseJoinColumns = @JoinColumn(name="idAutor"))
+		joinColumns=@JoinColumn(name="idLivro"),
+	    inverseJoinColumns=@JoinColumn(name="idAutor"))  
 	private List<Autor> autores = new ArrayList<Autor>();
 
 	public int getId() {

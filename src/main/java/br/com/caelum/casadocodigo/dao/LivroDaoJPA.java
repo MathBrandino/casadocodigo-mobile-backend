@@ -11,13 +11,17 @@ import br.com.caelum.casadocodigo.modelo.Livro;
 
 @Repository
 public class LivroDaoJPA {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public List<Livro> listarLivros() {
+	@SuppressWarnings("unchecked")
+	public List<Livro> listarLivros(int indicePrimeiroLivro, int qtdLivros) {
 		
-		return entityManager.createQuery("Select * from livro;", Livro.class).getResultList();
+		return entityManager.createQuery("select distinct l from Livro as l inner join fetch l.autores")
+				.setFirstResult(indicePrimeiroLivro)
+				.setMaxResults(qtdLivros)
+				.getResultList();
+				
 	}
-
 }

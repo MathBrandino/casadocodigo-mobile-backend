@@ -16,9 +16,11 @@ public class LivroControllerHibernate {
 
 	@ResponseBody
 	@RequestMapping("/listarLivrosHib")
-	public Acervo listarLivros() {
-		Acervo livros = new Acervo();
-		livros.setLivros(livroDaoJpa.listarLivros());
-		return livros;
+	public Acervo listaLivros(int indicePrimeiroLivro, int qtdLivros) {
+	
+		Acervo acervo = new Acervo();
+		acervo.setLivros(livroDaoJpa.listarLivros(indicePrimeiroLivro, qtdLivros));
+		
+		return acervo;
 	}
 }

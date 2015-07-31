@@ -2,44 +2,72 @@ package br.com.caelum.casadocodigo.conf;
 
 import java.util.Properties;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-public class JPAConfiguration {
-	
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
-		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		JpaVendorAdapter JpaVendorAdapter = new HibernateJpaVendorAdapter();
-		em.setDataSource(dataSource());
-		em.setJpaVendorAdapter(JpaVendorAdapter);
-		em.setPackagesToScan(new String[] {"br.com.caelum.casadocodigo.modelo"});
-		em.setJpaProperties(additionalProperties());
-		
-		return em;
-	}
+@Configuration
+@EnableTransactionManagement
+public class JPAConfiguration
+{
 
-	@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource ds = new DriverManagerDataSource();
-		ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://localhost/casaDoCodigo");
-		ds.setUsername("root");
-		ds.setPassword("");
-		return ds;
-	}
+   @Bean
+   public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource)
+   {
+      LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+      em.setDataSource(dataSource);
+      em.setPackagesToScan(new String[] { "br.com.caelum.casadocodigo.modelo" });
 
-	private Properties additionalProperties() {
-		Properties properties = new Properties();
+      JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+      em.setJpaVendorAdapter(vendorAdapter);
+      em.setJpaProperties(additionalProperties());
+
+      return em;
+   }
+
+   @Bean
+   public DataSource dataSource(Environment environment)
+   {
+      DriverManagerDataSource dataSource = new DriverManagerDataSource();
+      dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+      dataSource.setUrl("jdbc:mysql://localhost/casaDoCodigo");
+      dataSource.setUsername("root");
+      dataSource.setPassword("");
+      return dataSource;
+   }
+
+   @Bean
+   public PlatformTransactionManager transactionManager(EntityManagerFactory emf)
+   {
+      JpaTransactionManager transactionManager = new JpaTransactionManager();
+      transactionManager.setEntityManagerFactory(emf);
+      return transactionManager;
+   }
+
+   @Bean
+   public PersistenceExceptionTranslationPostProcessor exceptionTranslation()
+   {
+      return new PersistenceExceptionTranslationPostProcessor();
+   }
+
+   Properties additionalProperties()
+   {
+	   Properties properties = new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "validate");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 		properties.setProperty("hibernate.show_sql", "true");
 		return properties;
-	}
-
+   }
 }
