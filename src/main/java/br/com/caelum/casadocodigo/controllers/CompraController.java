@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,7 +19,7 @@ public class CompraController {
 	private CompraDao compraDao;
 
 	@ResponseBody
-	@RequestMapping("/listarLivrosHib")
+	@RequestMapping(name="/registraCompra", method=RequestMethod.POST, headers="Accept=application/json")
 	public void registraCompra(@RequestBody String json) {
 		
 		ObjectMapper om = new ObjectMapper();
@@ -27,8 +28,7 @@ public class CompraController {
 		try {
 			compra = om.readValue(json, Compra.class);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		
 		compraDao.registraCompra(compra);
