@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "br.com.caelum.casadocodigo") 
+@ComponentScan(basePackages = "br.com.caelum.casadocodigo")
 public class AppWebConfiguration extends WebMvcConfigurerAdapter
 {
 

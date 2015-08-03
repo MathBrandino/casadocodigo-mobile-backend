@@ -1,43 +1,40 @@
 package br.com.caelum.casadocodigo.controllers;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.caelum.casadocodigo.dao.ConnectionFactory;
 import br.com.caelum.casadocodigo.dao.JPALivroDao;
-import br.com.caelum.casadocodigo.dao.LivroDao;
 import br.com.caelum.casadocodigo.modelo.Acervo;
 
 @Controller
 public class LivroController {
 	
 	@Autowired
-	private JPALivroDao jpaLivroDao;
+	private JPALivroDao dao;
 
-	@ResponseBody
-	@RequestMapping("/listarLivros")
-	public Acervo listarLivros() {
-		Acervo livros = null;
-		try(Connection connection = new ConnectionFactory().getConnection()) {
-			livros = new Acervo();
-			livros.setLivros(new LivroDao(connection).listarLivros());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return livros;
-	}
+	//@ResponseBody
+	//@RequestMapping("/listarLivros")
+	//public Acervo listarLivros() {
+	//	Acervo livros = null;
+	//	try(Connection connection = new ConnectionFactory().getConnection()) {
+	//		livros = new Acervo();
+	//		livros.setLivros(new LivroDao(connection).listarLivros());
+	//	} catch (SQLException e) {
+	//		e.printStackTrace();
+	//	}
+	//	return livros;
+	//}
 	
 	@ResponseBody
-	@RequestMapping(name="/listarLivrosHib", method=RequestMethod.GET)
+	@RequestMapping(
+			name = "/listarLivros",
+			method = RequestMethod.GET)
 	public Acervo listaLivros(int indicePrimeiroLivro, int qtdLivros) {
 		Acervo acervo = new Acervo();
-		acervo.setLivros(jpaLivroDao.listarLivros(indicePrimeiroLivro, qtdLivros));
+		acervo.setLivros(dao.listarLivros(indicePrimeiroLivro, qtdLivros));
 		return acervo;
 	}
 }

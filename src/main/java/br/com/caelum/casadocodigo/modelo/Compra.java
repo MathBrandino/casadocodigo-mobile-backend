@@ -22,7 +22,7 @@ public class Compra {
 	@OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
 	private List<Item> itens = new ArrayList<Item>();
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "emailUsuario")
 	private Usuario usuario;
 	
