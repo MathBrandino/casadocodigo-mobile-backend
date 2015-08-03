@@ -30,7 +30,7 @@ public class LivroController {
 	
 	@ResponseBody
 	@RequestMapping(
-			name = "/listarLivros",
+			value = "/listarLivros",
 			method = RequestMethod.GET)
 	public Acervo listaLivros(int indicePrimeiroLivro, int qtdLivros) {
 		Acervo acervo = new Acervo();

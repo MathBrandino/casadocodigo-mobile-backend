@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +25,9 @@ public class CompraController {
 
 	@ResponseBody
 	@RequestMapping(
-			name="/registrarCompra", 
-			method=RequestMethod.POST, 
-			headers="Accept=application/json")
+			value = "/registrarCompra", 
+			method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void registraCompra(@RequestBody String json) {
 		
 		ObjectMapper om = new ObjectMapper();
@@ -42,7 +43,9 @@ public class CompraController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/listarCompras")
+	@RequestMapping(
+			value="/listarCompras",
+			method= RequestMethod.GET)
 	public List<Compra> listaCompras(Usuario usuario) {
 		
 		List<Compra> compras = dao.listaCompras(usuario);
