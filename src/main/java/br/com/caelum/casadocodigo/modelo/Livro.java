@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="livro")
@@ -26,22 +30,32 @@ public class Livro {
 	private int id;
 	private String nomeLivro;
 	private String descricaoLivro;
+	
 	@Temporal(value=TemporalType.DATE)
 	private Calendar dataPublicacao;
 	private int numeroPaginas;
+	
 	@Column(name="valorFisico")
 	private BigDecimal valorFisico;
+	
 	@Column(name="valorVirtual")
 	private BigDecimal valorVirtual;
+	
 	@Column(name="valorVirtualComFisico")
 	private BigDecimal valorVirtualComFisico;
 	private String isbn;
 	private String imagemUrl;
-	@ManyToMany 
-	@JoinTable(name="livroAutor", 
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(
+		name="livroAutor", 
 		joinColumns=@JoinColumn(name="idLivro"),
 	    inverseJoinColumns=@JoinColumn(name="idAutor"))  
 	private List<Autor> autores = new ArrayList<Autor>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
+	private List<Item> itens = new ArrayList<Item>();
 
 	public int getId() {
 		return id;
