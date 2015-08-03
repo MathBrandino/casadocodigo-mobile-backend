@@ -17,7 +17,6 @@ public class Item {
 	@GeneratedValue
 	private int id;
 	private TipoLivro formatoLivro;
-	// DATA DA COMPRA ???
 	
 	@ManyToOne
 	@JoinColumn(name = "idLivro")

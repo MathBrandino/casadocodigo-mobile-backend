@@ -1,5 +1,6 @@
 package br.com.caelum.casadocodigo.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ public class Autor {
 	@GeneratedValue
 	private int idAutor;
 	private String nomeAutor;
+	
+	@Column(length=5000)
 	private String detalhesAutor;
 	private String imagemAutor;
 

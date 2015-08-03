@@ -2,18 +2,31 @@
  * 
  */
 {
-"compra": [
-	    { "itens": [
-	         {"item": [
-	               {"livro": [
-	                   {"idLivro":1}
-	               ]},
-	               {"tipoLivro":"JUNTOS"}
-	          ]},
-	          {"Usuario":[
-	             {"email":"@"}
-	          ]
-	          }
-	     ]}
-    ]
+	"compra": [
+	    {
+	    	"itens": [
+	    	    {
+	    	    	"item": [
+	    	    	    {
+	    	    	    	"livro": [
+	    	    	    	    {
+	    	    	    	    	"idLivro":1
+	    	    	    	    }
+	    	    	    	]
+	    	    	    },
+	    	    	    {
+	    	    	    	"tipoLivro":"JUNTOS"
+	    	    	    }
+	    	    	]
+	    	    },
+	    	    {
+	    	    	"Usuario": [
+	    	    	    {
+	    	    	    	"email":"@"
+	    	    	    }
+	    	    	]
+	    	    }
+	    	]
+	    }
+	] // FALTANTE
 }

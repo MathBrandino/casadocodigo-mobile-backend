@@ -28,7 +28,11 @@ public class Livro {
 	@Id
 	@GeneratedValue
 	private int id;
+	
+	@Column(length=500)
 	private String nomeLivro;
+	
+	@Column(length=5000)
 	private String descricaoLivro;
 	
 	@Temporal(value=TemporalType.DATE)

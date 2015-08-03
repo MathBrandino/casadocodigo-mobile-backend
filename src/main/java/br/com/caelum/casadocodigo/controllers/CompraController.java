@@ -1,6 +1,7 @@
 package br.com.caelum.casadocodigo.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.com.caelum.casadocodigo.dao.CompraDao;
 import br.com.caelum.casadocodigo.modelo.Compra;
+import br.com.caelum.casadocodigo.modelo.Usuario;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CompraController {
 
@@ -19,7 +21,7 @@ public class CompraController {
 	private CompraDao compraDao;
 
 	@ResponseBody
-	@RequestMapping(name="/registraCompra", method=RequestMethod.POST, headers="Accept=application/json")
+	@RequestMapping(name="/registrarCompra", method=RequestMethod.POST, headers="Accept=application/json")
 	public void registraCompra(@RequestBody String json) {
 		
 		ObjectMapper om = new ObjectMapper();
@@ -33,5 +35,14 @@ public class CompraController {
 		
 		compraDao.registraCompra(compra);
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(name="/listarCompras", method=RequestMethod.GET)
+	public List<Compra> listaCompras(Usuario usuario) {
+		
+		System.out.println("Entrou na /listarCompras");
+		
+		List<Compra> compras = compraDao.listaCompras(usuario);
+		return compras;
+	}
 }
