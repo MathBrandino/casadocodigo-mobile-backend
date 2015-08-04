@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="livro")
 public class Livro {
@@ -27,28 +29,24 @@ public class Livro {
 	@GeneratedValue
 	private int id;
 	
+	@JsonProperty("nomeLivro")
 	@Column(length=500)
-	private String nomeLivro;
+	private String titulo;
 	
+	@JsonProperty("descricaoLivro")
 	@Column(length=5000)
-	private String descricaoLivro;
+	private String descricao;
 	
 	@Temporal(value=TemporalType.DATE)
 	private Calendar dataPublicacao;
-	private int numeroPaginas;
-	
-	@Column(name="valorFisico")
+	private int numeroPaginas;	
 	private BigDecimal valorFisico;
-	
-	@Column(name="valorVirtual")
 	private BigDecimal valorVirtual;
-	
-	@Column(name="valorVirtualComFisico")
 	private BigDecimal valorVirtualComFisico;
 	private String isbn;
 	private String imagemUrl;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinTable(name="livroAutor", 
 		joinColumns=@JoinColumn(name="idLivro"),
 	    inverseJoinColumns=@JoinColumn(name="idAutor"))  
@@ -62,20 +60,20 @@ public class Livro {
 		this.id = id;
 	}
 
-	public String getNomeLivro() {
-		return nomeLivro;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setNomeLivro(String nomeLivro) {
-		this.nomeLivro = nomeLivro;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
-	public String getDescricaoLivro() {
-		return descricaoLivro;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescricaoLivro(String descricaoLivro) {
-		this.descricaoLivro = descricaoLivro;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getDataPublicacao() {

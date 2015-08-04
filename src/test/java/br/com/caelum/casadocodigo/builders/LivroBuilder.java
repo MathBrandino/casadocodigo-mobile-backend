@@ -28,12 +28,12 @@ public class LivroBuilder {
 	}
 
 	public LivroBuilder setNomeLivro(String nomeLivro) {
-		this.livro.setNomeLivro(nomeLivro);
+		this.livro.setTitulo(nomeLivro);
 		return this;
 	}
 
 	public LivroBuilder setDescricaoLivro(String descricaoLivro) {
-		this.livro.setDescricaoLivro(descricaoLivro);
+		this.livro.setDescricao(descricaoLivro);
 		return this;
 	}
 

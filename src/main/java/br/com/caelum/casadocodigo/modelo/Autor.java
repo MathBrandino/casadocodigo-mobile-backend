@@ -6,54 +6,62 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="autor")
 public class Autor {
 
 	@Id
 	@GeneratedValue
-	private int idAutor;
-	private String nomeAutor;
+	@JsonProperty("idAutor")
+	private int id;
+	
+	@JsonProperty("nomeAutor")
+	private String nome;
 	
 	@Column(length=5000)
-	private String detalhesAutor;
-	private String imagemAutor;
+	@JsonProperty("detalhesAutor")
+	private String informacoes;
+	
+	@JsonProperty("imagemAutor")
+	private String imagemUrl;
 
-	public int getIdAutor() {
-		return idAutor;
+	public int getId() {
+		return id;
 	}
-	public void setIdAutor(int id) {
-		this.idAutor = id;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getNomeAutor() {
-		return nomeAutor;
+	public String getNome() {
+		return nome;
 	}
-	public void setNomeAutor(String nomeAutor) {
-		this.nomeAutor = nomeAutor;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public String getDetalhesAutor() {
-		return detalhesAutor;
+	public String getInformacoes() {
+		return informacoes;
 	}
-	public void setDetalhesAutor(String detalhesAutor) {
-		this.detalhesAutor = detalhesAutor;
+	public void setInformacoes(String informacoes) {
+		this.informacoes = informacoes;
 	}
-	public String getImagemAutor() {
-		return imagemAutor;
+	public String getImagemUrl() {
+		return imagemUrl;
 	}
-	public void setImagemAutor(String imagemAutor) {
-		this.imagemAutor = imagemAutor;
+	public void setImagemUrl(String imagemUrl) {
+		this.imagemUrl = imagemUrl;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((detalhesAutor == null) ? 0 : detalhesAutor.hashCode());
-		result = prime * result + idAutor;
+				+ ((informacoes == null) ? 0 : informacoes.hashCode());
+		result = prime * result + id;
 		result = prime * result
-				+ ((imagemAutor == null) ? 0 : imagemAutor.hashCode());
+				+ ((imagemUrl == null) ? 0 : imagemUrl.hashCode());
 		result = prime * result
-				+ ((nomeAutor == null) ? 0 : nomeAutor.hashCode());
+				+ ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 	@Override
@@ -63,22 +71,22 @@ public class Autor {
 		if (getClass() != obj.getClass())
 			return false;
 		Autor other = (Autor) obj;
-		if (detalhesAutor == null) {
-			if (other.detalhesAutor != null)
+		if (informacoes == null) {
+			if (other.informacoes != null)
 				return false;
-		} else if (!detalhesAutor.equals(other.detalhesAutor))
+		} else if (!informacoes.equals(other.informacoes))
 			return false;
-		if (idAutor != other.idAutor)
+		if (id != other.id)
 			return false;
-		if (imagemAutor == null) {
-			if (other.imagemAutor != null)
+		if (imagemUrl == null) {
+			if (other.imagemUrl != null)
 				return false;
-		} else if (!imagemAutor.equals(other.imagemAutor))
+		} else if (!imagemUrl.equals(other.imagemUrl))
 			return false;
-		if (nomeAutor == null) {
-			if (other.nomeAutor != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!nomeAutor.equals(other.nomeAutor))
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}

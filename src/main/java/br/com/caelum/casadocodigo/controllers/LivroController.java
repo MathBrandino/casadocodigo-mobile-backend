@@ -15,19 +15,6 @@ public class LivroController {
 	@Autowired
 	private LivroDao dao;
 
-	//@ResponseBody
-	//@RequestMapping("/listarLivros")
-	//public Acervo listarLivros() {
-	//	Acervo livros = null;
-	//	try(Connection connection = new ConnectionFactory().getConnection()) {
-	//		livros = new Acervo();
-	//		livros.setLivros(new LivroDao(connection).listarLivros());
-	//	} catch (SQLException e) {
-	//		e.printStackTrace();
-	//	}
-	//	return livros;
-	//}
-	
 	@ResponseBody
 	@RequestMapping(
 			value = "/listarLivros",

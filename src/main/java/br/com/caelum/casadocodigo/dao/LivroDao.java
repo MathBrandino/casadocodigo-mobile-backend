@@ -15,14 +15,10 @@ public class LivroDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	@SuppressWarnings("unchecked")
 	public List<Livro> listarLivros(int indicePrimeiroLivro, int qtdLivros) {
-		
-		//select distinct l from Livro as l inner join fetch l.autores
-		return entityManager.createQuery("from Livro")
+		return entityManager.createQuery("from Livro", Livro.class)
 				.setFirstResult(indicePrimeiroLivro)
 				.setMaxResults(qtdLivros)
 				.getResultList();
-				
 	}
 }

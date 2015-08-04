@@ -29,5 +29,4 @@ public class CompraDao {
 		query.setParameter("usuarioInformado", usuario);
 		return query.getResultList();
 	}
-
 }

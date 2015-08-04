@@ -16,22 +16,22 @@ public class AutorBuiler {
 	}
 
 	public AutorBuiler setIdAutor(int id) {
-		this.autor.setIdAutor(id);
+		this.autor.setId(id);
 		return this;
 	}
 
 	public AutorBuiler setNomeAutor(String nomeAutor) {
-		this.autor.setNomeAutor(nomeAutor);
+		this.autor.setNome(nomeAutor);
 		return this;
 	}
 
 	public AutorBuiler setDetalhesAutor(String detalhesAutor) {
-		this.autor.setDetalhesAutor(detalhesAutor);
+		this.autor.setInformacoes(detalhesAutor);
 		return this;
 	}
 
 	public AutorBuiler setImagemAutor(String imagemAutor) {
-		this.autor.setImagemAutor(imagemAutor);
+		this.autor.setImagemUrl(imagemAutor);
 		return this;
 	}
 
