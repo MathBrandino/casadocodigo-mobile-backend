@@ -43,3 +43,12 @@ insert into livroAutor values('2','2');
 insert into livroAutor values('2','1');
 
 
+-- COMPRA
+
+insert into usuario values('rafael.rollo@caelum.com.br');
+insert into compra(emailUsuario) values('rafael.rollo@caelum.com.br');
+
+insert into item(idLivro, idCompra, formatoLivro) values(1, 1, 0);
+insert into item(idLivro, idCompra, formatoLivro) values(2, 1, 1);
+
+

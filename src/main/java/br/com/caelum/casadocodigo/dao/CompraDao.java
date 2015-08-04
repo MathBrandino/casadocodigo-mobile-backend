@@ -25,8 +25,7 @@ public class CompraDao {
 	public List<Compra> listaCompras(Usuario usuario) {
 		
 		Query query = entityManager
-				.createQuery("select c from Compra as c inner join fetch c.itens "
-						+ "where c.usuario = :usuarioInformado");
+				.createQuery("from Compra as c where c.usuario = :usuarioInformado");
 		query.setParameter("usuarioInformado", usuario);
 		return query.getResultList();
 	}

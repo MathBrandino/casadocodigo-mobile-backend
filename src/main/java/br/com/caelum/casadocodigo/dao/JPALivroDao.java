@@ -18,7 +18,8 @@ public class JPALivroDao {
 	@SuppressWarnings("unchecked")
 	public List<Livro> listarLivros(int indicePrimeiroLivro, int qtdLivros) {
 		
-		return entityManager.createQuery("select distinct l from Livro as l inner join fetch l.autores")
+		//select distinct l from Livro as l inner join fetch l.autores
+		return entityManager.createQuery("from Livro")
 				.setFirstResult(indicePrimeiroLivro)
 				.setMaxResults(qtdLivros)
 				.getResultList();
