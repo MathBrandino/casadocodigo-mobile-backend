@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import br.com.caelum.casadocodigo.modelo.Livro;
 
 @Repository
-public class JPALivroDao {
+public class LivroDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;

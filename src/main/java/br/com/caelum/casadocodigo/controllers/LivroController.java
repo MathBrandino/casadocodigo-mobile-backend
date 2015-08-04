@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.caelum.casadocodigo.dao.JPALivroDao;
+import br.com.caelum.casadocodigo.dao.LivroDao;
 import br.com.caelum.casadocodigo.modelo.Acervo;
 
 @Controller
 public class LivroController {
 	
 	@Autowired
-	private JPALivroDao dao;
+	private LivroDao dao;
 
 	//@ResponseBody
 	//@RequestMapping("/listarLivros")
