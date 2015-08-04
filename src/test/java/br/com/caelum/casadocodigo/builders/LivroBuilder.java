@@ -27,13 +27,13 @@ public class LivroBuilder {
 		return this;
 	}
 
-	public LivroBuilder setNomeLivro(String nomeLivro) {
-		this.livro.setTitulo(nomeLivro);
+	public LivroBuilder setTitulo(String titulo) {
+		this.livro.setTitulo(titulo);
 		return this;
 	}
 
-	public LivroBuilder setDescricaoLivro(String descricaoLivro) {
-		this.livro.setDescricao(descricaoLivro);
+	public LivroBuilder setDescricao(String descricao) {
+		this.livro.setDescricao(descricao);
 		return this;
 	}
 
@@ -86,5 +86,4 @@ public class LivroBuilder {
 		this.livro.addAutor(autor);
 		return this;
 	}
-
 }
