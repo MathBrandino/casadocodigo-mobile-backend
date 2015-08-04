@@ -9,17 +9,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="livro")
@@ -50,17 +48,12 @@ public class Livro {
 	private String isbn;
 	private String imagemUrl;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(
-		name="livroAutor", 
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name="livroAutor", 
 		joinColumns=@JoinColumn(name="idLivro"),
 	    inverseJoinColumns=@JoinColumn(name="idAutor"))  
 	private List<Autor> autores = new ArrayList<Autor>();
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
-	private List<Item> itens = new ArrayList<Item>();
-
 	public int getId() {
 		return id;
 	}
