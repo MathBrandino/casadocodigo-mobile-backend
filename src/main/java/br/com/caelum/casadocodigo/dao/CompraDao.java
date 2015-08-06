@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.hibernate.HibernateException;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.stereotype.Repository;
 
 import br.com.caelum.casadocodigo.modelo.Compra;
@@ -22,7 +24,7 @@ public class CompraDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Compra> listaCompras(Usuario usuario) {
+	public List<Compra> listaCompras(Usuario usuario) throws JpaObjectRetrievalFailureException {
 		
 		Query query = entityManager
 				.createQuery("from Compra as c where c.usuario = :usuarioInformado");

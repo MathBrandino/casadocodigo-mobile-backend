@@ -1,6 +1,5 @@
 package br.com.caelum.casadocodigo.controllers;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import br.com.caelum.casadocodigo.dao.CompraDao;
 import br.com.caelum.casadocodigo.modelo.Compra;
 import br.com.caelum.casadocodigo.modelo.Usuario;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 @Controller
 public class CompraController {
 
@@ -28,26 +25,19 @@ public class CompraController {
 			value = "/registrarCompra", 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void registraCompra(@RequestBody String json) {
-		
-		ObjectMapper om = new ObjectMapper();
-		Compra compra = null;
-		
-		try {
-			compra = om.readValue(json, Compra.class);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		
+	public void registraCompra(@RequestBody Compra compra) {
+		System.out.println("passou aqui1");
+		System.out.println(compra.getItens().get(0).getId());
 		dao.registraCompra(compra);
+		
 	}
 	
 	@ResponseBody
 	@RequestMapping(
 			value="/listarCompras",
-			method= RequestMethod.GET)
+			method= RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Compra> listaCompras(Usuario usuario) {
-		
 		List<Compra> compras = dao.listaCompras(usuario);
 		return compras;
 	}
