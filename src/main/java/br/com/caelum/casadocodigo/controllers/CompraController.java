@@ -34,7 +34,9 @@ public class CompraController {
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void registraCompra(@RequestBody Compra compra) {
 		
-		if(!usuarioDao.isUsuario(compra.getUsuario()))
+		boolean existe = usuarioDao.isUsuario(compra.getUsuario());
+		System.out.println(existe);
+		if(!existe)
 			usuarioDao.registraUsuario(compra.getUsuario());
 		
 		compraDao.registraCompra(compra);
