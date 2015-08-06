@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.caelum.casadocodigo.dao.CompraDao;
+import br.com.caelum.casadocodigo.dao.UsuarioDao;
 import br.com.caelum.casadocodigo.modelo.Compra;
 import br.com.caelum.casadocodigo.modelo.Usuario;
 
@@ -20,7 +21,10 @@ import br.com.caelum.casadocodigo.modelo.Usuario;
 public class CompraController {
 
 	@Autowired
-	private CompraDao dao;
+	private CompraDao compraDao;
+	
+	@Autowired
+	private UsuarioDao usuarioDao;
 
 	@ResponseBody
 	@Transactional
@@ -29,9 +33,11 @@ public class CompraController {
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void registraCompra(@RequestBody Compra compra) {
-		System.out.println("passou aqui1");
-		System.out.println(compra.getItens().get(0).getId());
-		dao.registraCompra(compra);
+		
+		if(!usuarioDao.isUsuario(compra.getUsuario()))
+			usuarioDao.registraUsuario(compra.getUsuario());
+		
+		compraDao.registraCompra(compra);
 	}
 	
 	@ResponseBody
@@ -40,7 +46,7 @@ public class CompraController {
 			method= RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Compra> listaCompras(Usuario usuario) {
-		List<Compra> compras = dao.listaCompras(usuario);
+		List<Compra> compras = compraDao.listaCompras(usuario);
 		return compras;
 	}
 }

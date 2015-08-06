@@ -26,7 +26,7 @@ public class Compra {
 	@JsonManagedReference
  	private List<Item> itens = new ArrayList<Item>();
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "emailUsuario")
 	private Usuario usuario;
 	
