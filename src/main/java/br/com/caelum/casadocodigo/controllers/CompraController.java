@@ -2,6 +2,8 @@ package br.com.caelum.casadocodigo.controllers;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,7 @@ public class CompraController {
 	private CompraDao dao;
 
 	@ResponseBody
+	@Transactional
 	@RequestMapping(
 			value = "/registrarCompra", 
 			method = RequestMethod.POST, 
@@ -29,7 +32,6 @@ public class CompraController {
 		System.out.println("passou aqui1");
 		System.out.println(compra.getItens().get(0).getId());
 		dao.registraCompra(compra);
-		
 	}
 	
 	@ResponseBody

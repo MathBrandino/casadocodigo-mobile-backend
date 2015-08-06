@@ -30,6 +30,7 @@ public class Compra {
 	@JoinColumn(name = "emailUsuario")
 	private Usuario usuario;
 	
+	
 	public List <Item> getItens() {
 		return itens;
 	}
