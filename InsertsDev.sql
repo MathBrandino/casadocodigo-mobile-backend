@@ -21,7 +21,6 @@ insert into livroAutor values('1','1');
 
 
 -- LIVRO 2
-use casaDoCodigo;
 insert into livro (titulo, descricao, dataPublicacao, numeroPaginas, valorFisico, valorVirtual, valorVirtualComFisico, isbn, imagemUrl) 
 values(	'Spring MVC: Domine o principal framework web Java',
 		'O Spring é o principal concorrente da especificação JavaEE. Com uma plataforma muito estável e com integração fina entre todas as suas extensões, fornece um ambiente muito propício para que o programador foque nas regras de negócio e esqueça dos problemas de infraestrutura.   Durante o livro, será construída uma aplicação baseada na loja da Casa do Código e você terá a chance de utilizar diversas das funcionalidades e integrações providas pelo framework. Usaremos o Spring MVC como alicerce da nossa aplicação web e para implementar todas as funcionalidades, utilizaremos diversas integrações, como: Spring JPA, para facilitar o acesso ao banco de dados; Spring Security, para segurança da aplicação; diferenciação de ambientes com a parte de Profiles; respostas assíncronas para melhorarmos a escalabilidade; e ainda detalhes, como cache e suporte às requisições, seguindo o estilo REST.   Tudo isso sem uma linha de XML, todas configurações serão feitas baseadas em anotações e código Java.',

@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -18,10 +19,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import br.com.caelum.casadocodigo.conf.AppWebConfiguration;
+import br.com.caelum.casadocodigo.conf.DataSourceConfigurationTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = AppWebConfiguration.class)
+@ContextConfiguration(classes = {AppWebConfiguration.class, DataSourceConfigurationTest.class})
+@ActiveProfiles("test")
 public class CompraControllerTest {
 
 	private MockMvc mock;
