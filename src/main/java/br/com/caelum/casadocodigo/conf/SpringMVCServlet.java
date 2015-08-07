@@ -34,7 +34,7 @@ public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletI
 			throws ServletException {
 		super.onStartup(servletContext);
 		servletContext.addListener(RequestContextListener.class);
-		servletContext.setInitParameter("spring.profiles.active", "dev");
+		servletContext.setInitParameter("spring.profiles.active", "prod");
 
 		FilterRegistration.Dynamic encodingFilter = servletContext.addFilter(
 				"encoding-filter", new CharacterEncodingFilter());
