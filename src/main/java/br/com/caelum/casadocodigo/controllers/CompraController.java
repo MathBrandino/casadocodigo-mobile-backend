@@ -32,7 +32,7 @@ public class CompraController {
 			value = "/registrarCompra", 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void registraCompra(@RequestBody Compra compra) {
+	public String registraCompra(@RequestBody Compra compra) {
 		
 		boolean existe = usuarioDao.isUsuario(compra.getUsuario());
 		System.out.println(existe);
@@ -40,6 +40,7 @@ public class CompraController {
 			usuarioDao.registraUsuario(compra.getUsuario());
 		
 		compraDao.registraCompra(compra);
+		return "Ok";
 	}
 	
 	@ResponseBody
