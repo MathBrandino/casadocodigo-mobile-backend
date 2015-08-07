@@ -5,7 +5,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,15 +34,13 @@ public class CompraController {
 			value = "/registrarCompra", 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String registraCompra(@RequestBody Compra compra) {
+	public ResponseEntity<String> registraCompra(@RequestBody Compra compra) {
 		
-		boolean existe = usuarioDao.isUsuario(compra.getUsuario());
-		System.out.println(existe);
-		if(!existe)
+		if(!usuarioDao.isUsuario(compra.getUsuario()))
 			usuarioDao.registraUsuario(compra.getUsuario());
-		
 		compraDao.registraCompra(compra);
-		return "Ok";
+		
+		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 	
 	@ResponseBody
@@ -48,8 +48,9 @@ public class CompraController {
 			value="/listarCompras",
 			method= RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Compra> listaCompras(Usuario usuario) {
+	public ResponseEntity<List<Compra>> listaCompras(Usuario usuario) {
+	
 		List<Compra> compras = compraDao.listaCompras(usuario);
-		return compras;
+		return new ResponseEntity<List<Compra>>(compras, HttpStatus.OK); 
 	}
 }
