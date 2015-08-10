@@ -1,5 +1,7 @@
 package br.com.caelum.casadocodigo.conf;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
@@ -20,56 +22,54 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-public class JPAConfiguration
-{
+public class JPAConfiguration {
 
-   @Bean
-   public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource)
-   {
-      LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-      em.setDataSource(dataSource);
-      em.setPackagesToScan(new String[] { "br.com.caelum.casadocodigo.modelo" });
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+		em.setDataSource(dataSource);
+		em.setPackagesToScan(new String[] { "br.com.caelum.casadocodigo.modelo" });
 
-      JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-      em.setJpaVendorAdapter(vendorAdapter);
-      em.setJpaProperties(additionalProperties());
+		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		em.setJpaVendorAdapter(vendorAdapter);
+		em.setJpaProperties(additionalProperties());
 
-      return em;
-   }
+		return em;
+	}
 
-   @Bean
-   @Profile("dev")
-   public DataSource dataSource(Environment environment)
-   {
-      DriverManagerDataSource dataSource = new DriverManagerDataSource();
-      dataSource.setDriverClassName("org.postgresql.Driver");
-      dataSource.setUrl("jdbc:postgresql://localhost:5432/casadocodigo");
-      dataSource.setUsername("postgres");
-      dataSource.setPassword("postgres");
-      return dataSource;
-   }
+	@Bean
+	@Profile("dev")
+	public DataSource dataSource(Environment environment) throws URISyntaxException {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("org.postgresql.Driver");
 
-   @Bean
-   public PlatformTransactionManager transactionManager(EntityManagerFactory emf)
-   {
-      JpaTransactionManager transactionManager = new JpaTransactionManager();
-      transactionManager.setEntityManagerFactory(emf);
-      return transactionManager;
-   }
+		URI dbUrl;
+			dbUrl = new URI(environment.getProperty("DATABASE_URL"));
+			dataSource.setUrl("jdbc:postgresql://" + dbUrl.getHost() + ":" + dbUrl.getPort() + dbUrl.getPath());
+			dataSource.setUsername(dbUrl.getUserInfo().split(":")[0]);
+			dataSource.setPassword(dbUrl.getUserInfo().split(":")[1]);
+			return dataSource;
+		
+	}
 
-   @Bean
-   public PersistenceExceptionTranslationPostProcessor exceptionTranslation()
-   {
-      return new PersistenceExceptionTranslationPostProcessor();
-   }
-   
-   Properties additionalProperties()
-   {
-	   Properties properties = new Properties();
+	@Bean
+	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(emf);
+		return transactionManager;
+	}
+
+	@Bean
+	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+		return new PersistenceExceptionTranslationPostProcessor();
+	}
+
+	Properties additionalProperties() {
+		Properties properties = new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
 		properties.setProperty("hibernate.show_sql", "true");
 		properties.setProperty("hibernate.format_sql", "true");
 		return properties;
-   }
+	}
 }
