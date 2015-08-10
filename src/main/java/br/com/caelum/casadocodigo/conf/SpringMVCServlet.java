@@ -20,7 +20,7 @@ public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletI
    @Override
    protected Class<?>[] getServletConfigClasses()
    {
-      return new Class[]{AppWebConfiguration.class, JPAConfiguration.class, JPAProductionConfiguration.class};
+      return new Class[]{};
    }
 
    @Override
@@ -33,8 +33,8 @@ public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletI
 	public void onStartup(ServletContext servletContext)
 			throws ServletException {
 		super.onStartup(servletContext);
-		servletContext.addListener(RequestContextListener.class);
-//		servletContext.setInitParameter("spring.profiles.active", "prod");
+//		servletContext.addListener(RequestContextListener.class);
+		servletContext.setInitParameter("spring.profiles.active", "dev");
 
 		FilterRegistration.Dynamic encodingFilter = servletContext.addFilter(
 				"encoding-filter", new CharacterEncodingFilter());
