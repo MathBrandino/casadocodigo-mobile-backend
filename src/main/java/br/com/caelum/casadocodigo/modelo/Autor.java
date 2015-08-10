@@ -3,6 +3,7 @@ package br.com.caelum.casadocodigo.modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Autor {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@JsonProperty("idAutor")
 	private int id;
 	

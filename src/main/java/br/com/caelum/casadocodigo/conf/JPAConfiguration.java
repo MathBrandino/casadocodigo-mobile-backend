@@ -42,10 +42,10 @@ public class JPAConfiguration
    public DataSource dataSource(Environment environment)
    {
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
-      dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-      dataSource.setUrl("jdbc:mysql://localhost/casaDoCodigo");
-      dataSource.setUsername("root");
-      dataSource.setPassword("");
+      dataSource.setDriverClassName("org.postgresql.Driver");
+      dataSource.setUrl("jdbc:postgresql://localhost:5432/casadocodigo");
+      dataSource.setUsername("postgres");
+      dataSource.setPassword("postgres");
       return dataSource;
    }
 
