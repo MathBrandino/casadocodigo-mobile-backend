@@ -20,6 +20,7 @@ public class JPAProductionConfiguration {
 	@Bean
 	public DataSource dataSource() throws URISyntaxException {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		
 		URI dbUrl = new URI(environment.getProperty("DATABASE_URL"));
