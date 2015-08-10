@@ -19,18 +19,23 @@ public class JPAProductionConfiguration {
 	
 	@Bean
 	@Profile("prod")
-	public DataSource dataSource() throws URISyntaxException {
+	public DataSource dataSource(){
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		
-		URI dbUrl = new URI(environment.getProperty("DATABASE_URL"));
-		dataSource.setUrl("jdbc:postgresql://" 
-				+ dbUrl.getHost() + ":"
-				+ dbUrl.getPort() + dbUrl.getPath());
-		dataSource.setUsername(dbUrl.getUserInfo().split(":")[0]);
-		dataSource.setPassword(dbUrl.getUserInfo().split(":")[1]);
-		
-		return dataSource;
+		URI dbUrl;
+		try {
+			dbUrl = new URI(environment.getProperty("DATABASE_URL"));
+			dataSource.setUrl("jdbc:postgresql://" 
+					+ dbUrl.getHost() + ":"
+					+ dbUrl.getPort() + dbUrl.getPath());
+			dataSource.setUsername(dbUrl.getUserInfo().split(":")[0]);
+			dataSource.setPassword(dbUrl.getUserInfo().split(":")[1]);
+			
+			return dataSource;
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
