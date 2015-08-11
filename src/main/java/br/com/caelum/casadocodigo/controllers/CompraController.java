@@ -40,7 +40,7 @@ public class CompraController {
 			usuarioDao.registraUsuario(compra.getUsuario());
 		compraDao.registraCompra(compra);
 		
-		return new ResponseEntity<String>(HttpStatus.OK);
+		return new ResponseEntity<String>("200 OK", HttpStatus.OK);
 	}
 	
 	@ResponseBody

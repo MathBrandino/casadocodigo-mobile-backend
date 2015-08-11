@@ -5,7 +5,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.springframework.core.env.AbstractEnvironment;
-import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -34,7 +33,6 @@ public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletI
 	public void onStartup(ServletContext servletContext)
 			throws ServletException {
 		super.onStartup(servletContext);
-//		servletContext.addListener(RequestContextListener.class);
 		servletContext.setInitParameter(AbstractEnvironment.DEFAULT_PROFILES_PROPERTY_NAME, "dev");
 		
 

@@ -1,7 +1,5 @@
 package br.com.caelum.casadocodigo.builders;
 
-import java.util.List;
-
 import br.com.caelum.casadocodigo.modelo.Compra;
 import br.com.caelum.casadocodigo.modelo.Item;
 import br.com.caelum.casadocodigo.modelo.Usuario;

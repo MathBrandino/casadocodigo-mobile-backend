@@ -11,7 +11,6 @@ import javax.persistence.Table;
 import br.com.caelum.casadocodigo.enums.TipoLivro;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="item")
