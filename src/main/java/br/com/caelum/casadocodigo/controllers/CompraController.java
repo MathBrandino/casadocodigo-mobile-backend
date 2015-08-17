@@ -20,6 +20,7 @@ import br.com.caelum.casadocodigo.modelo.Compra;
 import br.com.caelum.casadocodigo.modelo.Usuario;
 
 @Controller
+@RequestMapping("/compras")
 public class CompraController {
 
 	@Autowired
@@ -31,7 +32,6 @@ public class CompraController {
 	@ResponseBody
 	@Transactional
 	@RequestMapping(
-			value = "/registrarCompra", 
 			method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> registraCompra(@RequestBody Compra compra) {
@@ -45,7 +45,6 @@ public class CompraController {
 	
 	@ResponseBody
 	@RequestMapping(
-			value="/listarCompras",
 			method= RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Compra>> listaCompras(Usuario usuario) {

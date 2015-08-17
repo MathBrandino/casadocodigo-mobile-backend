@@ -16,6 +16,7 @@ import br.com.caelum.casadocodigo.dao.LivroDao;
 import br.com.caelum.casadocodigo.modelo.Acervo;
 
 @Controller
+@RequestMapping("/livros")
 public class LivroController {
 	
 	@Autowired
@@ -23,7 +24,6 @@ public class LivroController {
 
 	@ResponseBody
 	@RequestMapping(
-			value = "/listarLivros",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	@Cacheable(value = "acervo")
